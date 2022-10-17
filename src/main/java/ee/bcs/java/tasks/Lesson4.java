@@ -19,7 +19,7 @@ public class Lesson4 {
             // this has to store accountNr with 0 balance
             // TODO 2
             // Add command: "getBalance ${accountNr}"
-            // this has to display account balance of specific acount
+            // this has to display account balance of specific account
             // TODO 3
             // Add command: "depositMoney ${accountNr} ${amount}
             // this has to add specified amount of money to account

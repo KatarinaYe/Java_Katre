@@ -1,5 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World, " + args[0] + "!");
+        String a = "text";
+        String b = new String ("text2");
+        System.out.println(a.toUpperCase());
+
+
     }
 }
