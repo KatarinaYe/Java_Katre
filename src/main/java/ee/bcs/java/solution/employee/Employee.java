@@ -1,6 +1,6 @@
 package ee.bcs.java.solution.employee;
 
-public class EmployeeSample {
+public class Employee {
     private Integer id;
     private String firstName;
     private String lastName;

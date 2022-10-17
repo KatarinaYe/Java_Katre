@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class BankController {
+public class BankControllerA {
     Map<String, Integer> accounts = new HashMap<>();
     // accounts.put("EE123", 123);
     // accounts.get("EE123");

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class EmployeeControllerSample {
+public class EmployeeController {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
@@ -50,38 +50,38 @@ public class EmployeeControllerSample {
     // lihtne versioon
     // http://localhost:8080/sample/employee/get1?id=1
     @GetMapping("sample/employee/get1")
-    public EmployeeSample getEmployee1(Integer id){
+    public Employee getEmployee1(Integer id){
         String sql = "SELECT * FROM employee WHERE id = :id";
         Map paramMap = new HashMap();
         paramMap.put("id", id);
-        EmployeeSample employee = jdbcTemplate.queryForObject(sql, paramMap, new BeanPropertyRowMapper<>(EmployeeSample.class));
+        Employee employee = jdbcTemplate.queryForObject(sql, paramMap, new BeanPropertyRowMapper<>(Employee.class));
         return employee;
     }
 
     // http://localhost:8080/employee/all
     @GetMapping("sample/employee/all")
-    public List<EmployeeSample> getAllEmployees(){
+    public List<Employee> getAllEmployees(){
         String sql = "SELECT * FROM employee";
         Map paramMap = new HashMap();
-        List<EmployeeSample> employees = jdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(EmployeeSample.class));
+        List<Employee> employees = jdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(Employee.class));
         return employees;
     }
 
     // raskem versioon
     //http://localhost:8080/employee/get2?id=1
     @GetMapping("sample/employee/get2")
-    public EmployeeSample getEmployee2(Integer id){
+    public Employee getEmployee2(Integer id){
         String sql = "SELECT * FROM employee WHERE id = :id";
         Map paramMap = new HashMap();
         paramMap.put("id", id);
-        EmployeeSample employee = jdbcTemplate.queryForObject(sql, paramMap, new EmployeeRowMapper());
+        Employee employee = jdbcTemplate.queryForObject(sql, paramMap, new EmployeeRowMapper());
         return employee;
     }
 
-    private class EmployeeRowMapper implements RowMapper<EmployeeSample> {
+    private class EmployeeRowMapper implements RowMapper<Employee> {
         @Override
-        public EmployeeSample mapRow(ResultSet resultSet, int i) throws SQLException {
-            EmployeeSample employee = new EmployeeSample();
+        public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+            Employee employee = new Employee();
             employee.setId(resultSet.getInt("id"));
             employee.setFirstName(resultSet.getString("first_name"));
             employee.setLastName(resultSet.getString("last_name"));

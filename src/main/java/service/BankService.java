@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class SampleBankService {
+public class BankService {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;

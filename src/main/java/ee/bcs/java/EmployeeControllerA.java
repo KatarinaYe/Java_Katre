@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class EmployeeController {
+public class EmployeeControllerA {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
