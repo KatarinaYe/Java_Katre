@@ -4,14 +4,31 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="1" author="Siim">
+
+    <changeSet id="2022-10-24 Add account Table" author="Katre Kivaste">
+        <createTable tableName="account">
+            <column name="account_number" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="balance" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2022-10-24 add Employee table" author="Katre Kivaste">
+        <createTable tableName="employee">
+            <column name="id" type="int" autoIncrement="true"/>
+            <column name="first_name" type="text"/>
+            <column name="last_name" type="text"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2022-10-24 add Author table" author="Katre Kivaste">
         <createTable tableName="author">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="text"/>
         </createTable>
-
+    </changeSet>
+    <changeSet id="2022-10-24 Add Book table" author="Katre Kivaste">
         <createTable tableName="book">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -20,20 +37,46 @@
             <column name="name" type="text"/>
             <column name="author_id" type="int">
                 <constraints
-                        unique="true"
-                        nullable="false"
-                        foreignKeyName="fk_book_author"
-                        references="author(id)"
-                deleteCascade="true"/>
+                    unique="true"
+                    nullable="false"
+                    foreignKeyName="fk_book_author"
+                    references="author(id)"
+                    deleteCascade="true"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="2021-09-07 Add client table" author="Siim Rebane">
+    <changeSet id="2022-10-24 add new Employee table" author="Katre Kivaste">
+        <createTable tableName="employee">
+            <column name="id" type="int" autoIncrement="true"/>
+            <column name="first_name" type="text"/>
+            <column name="last_name" type="text"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2021-09-07 Add  new client table" author="Katre Kivaste">
         <createTable tableName="client">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="text"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2021-10-07 Add new client table" author="Katre Kivaste">
+        <createTable tableName="client">
+            <column name="id" type="int" autoIncrement="true"/>
+            <column name="first_name" type="text"/>
+            <column name="last_name" type="text"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2022-10-25 Add new Account table" author="Katre Kivaste">
+        <createTable tableName="account">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="account_number" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="client_id" type="int"/>
+            <column name="balance" type="int"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class EmployeeController {
+public class employeeControllerP {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;

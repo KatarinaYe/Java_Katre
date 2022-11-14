@@ -2,12 +2,168 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANK</title>
 </head>
 <body>
 
 
+
+
+    <h1>Tere tulemast investeerimispanka ViimaneRaha!</h1>
+
+    <h2> Loo konto</h2>
+
+<hr>
+
+    <ul>
+        <li style="display: inline-block;margin: 16px; padding: 16px; ">KONTO NUMBER</li>
+
+        <input id= "clientNumber" type="text" style="display: block;" placeholder="Kliendi ID">
+        <input id= "accountNumber" type="text" style="display: block;" placeholder="Konto number">
+    <button id="createAccountButton" style="display: block;">Sisesta</button>
+
+
+</ul>
+    <hr>
+    <ul>
+        <li style="display: inline-block;margin: 16px; padding: 16px; ">NIMI</li>
+            <input id= "firstName" type="text" style="display: block;" placeholder="Eesnimi">
+            <input id= "lastName" type="text" style="display: block;" placeholder="Perenimi">
+            <button id="createClientButton" style="display: block;">Sisesta</button>
+
+    </ul>
+<hr>
+<hr>
+    <h2> Kontojääk </h2>
+    <input id= "accountNumber2" type="text" style="display: block;" placeholder="Konto number">
+    <button id="accountBalanceButton" style="display: block;">Sisesta</button>
+    <input id = "accountBalanceAnswer" disabled placeholder="Kontojääk">
+<hr>
+    <h2> Raha kontolt välja </h2>
+    <input id= "accountNumber3" type="text" style="display: block;" placeholder="Konto number">
+    <input id = "withdrawMoneySum" type="text" style="display: block;" placeholder="Summa">
+    <button id="withdrawMoneyButton" style="display: block;">Väljamakse</button>
+    <hr>
+
+
+
+    <script>
+        let button = document.getElementById("createAccountButton")
+        button.onclick = function(){
+            let accountNumber = document.getElementById('accountNumber').value;
+            let clientNumber = document.getElementById('clientNumber').value;
+            let url = "bank/createNewAccount?accountNumber="+accountNumber+"&clientID="+clientNumber;
+            fetch(url)
+        }
+        let button2 = document.getElementById("createClientButton")
+        button2.onclick = function (){
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            let url = "bank_solution/createNewClient?firstName="+firstName+"&lastName="+lastName;
+            fetch(url)
+        }
+        let button3 = document.getElementById("accountBalanceButton")
+        button3.onclick = function (){
+            let accountNumber = document.getElementById('accountNumber2').value;
+            let url = "bank/getAccountBalance?accountNumber="+accountNumber;
+            fetch(url)
+                .then(result => result.text())
+                .then(responce => {
+                    let answerBox = document.getElementById("accountBalanceAnswer")
+                    answerBox.value = responce
+                })  //või alert(responce)
+        }
+        let button4 = document.getElementById("withdrawMoneyButton")
+        button4.onclick = function (){
+            let accountNumber = document.getElementById('accountNumber3').value;
+            let withdrawMoneySum = document.getElementById('withdrawMoneySum').value;
+            let url = "bank/withdrawMoney?accountNumber="+ accountNumber +"&amount=" + withdrawMoneySum;
+            fetch(url)
+                .then(() => getData)
+        }
+    </script>
+
+
+<h1>Kontod</h1>
+<button id="askAccounts">Küsi konto andmed</button>
+<table id="accountTable">
+<tr>
+    <th>Konto number</th>
+    <th>Konto jääk</th>
+</tr>
+</table>
+<script>
+    function getData(){
+        let url = 'bank/allAccounts'
+        fetch(url)
+            .then (response => response.json())
+            .then (data => {
+                let table = document.getElementById("accountTable")
+                for(let i = 0 ; i < data.length; i++) {
+                    let row = document.createElement('tr')
+                    table.appendChild(row)
+                    let cell1 = document.createElement('td')
+                    row.appendChild(cell1)
+                    cell1.innerText = data[i].accountNumber
+                    let cell2 = document.createElement('td')
+                    row.appendChild(cell2)
+                    cell2.innerText = data[i].balance
+                }
+            })
+        //alert("töötab")
+    }
+    let button5 = document.getElementById("askAccounts")
+    button5.onclick = getData;
+
+</script>
+
+<hr>
+
+    <h1>Töötajad</h1>
+    <button id="askEmployee">Küsi töötajate nimekiri</button>
+    <table id="employeeTable">
+        <tr>
+            <th>Eesnimi</th>
+            <th>Perenimi</th>
+        </tr>
+    </table>
+    <script>
+        function getData(){
+        let url = 'employee/allEmployee2'
+        fetch(url)
+        .then (response => response.json())
+        .then (data => {
+        let table = document.getElementById("employeeTable")
+        for(let i = 0 ; i < data.length; i++) {
+        let row = document.createElement('tr')
+        table.appendChild(row)
+        let cell1 = document.createElement('td')
+        row.appendChild(cell1)
+        cell1.innerText = data[i].firstName
+        let cell2 = document.createElement('td')
+        row.appendChild(cell2)
+        cell2.innerText = data[i].lastName
+    }
+    })
+        //alert("töötab")
+    }
+        let button6 = document.getElementById("askEmployee")
+        button6.onclick = getData;
+
+</script>
+
+
+    <p style="text-align:center;">
+        <span style="color:red;">KatreK</span>
+        <span style="color:darkblue;">&#169;</span>
+        <span style="color:mediumvioletred;">2022</span>
+    </p>
+
 </body>
+
+
 </html>
 
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ülesanded</title>
+</head>
+<body>
+<h3>Anna miinimum</h3>
+a: <input id="a">
+b: <input id="b">
+<button id="minButton">Min</button>
+<hr>
+Vastus: <input id="answer" disabled/>
+</body>
+<script>
+  let minButton = document.getElementById('minButton');
+  minButton.onclick = function () {
+    let a = document.getElementById("a");
+    let b = document.getElementById("b");
+    let answer = document.getElementById("answer");
+    if (Number(a.value) < Number(b.value)) {
+      answer.value = a.value;
+    } else {
+      answer.value = b.value;
+    }
+  }
+</script>
+<hr>
+<hr>
+<body>
+<h3>Anna maksimum</h3>
+a: <input id="c">
+b: <input id="d">
+<button id="maxButton">Max</button>
+<hr>
+Vastus: <input id="answer2" disabled/>
+</body>
+<script>
+  let maxButton = document.getElementById('maxButton');
+  maxButton.onclick = function (){
+    let a = document.getElementById("c");
+    let b = document.getElementById("d");
+    let answer = document.getElementById("answer2");
+    if(Number(a.value) > Number(b.value)){
+    answer.value = a.value;
+        } else {
+  answer.value = b.value;
+        }
+}
+</script>
+<hr>
+<hr>
+<body>
+<h3>Anna absoluutväärtus</h3>
+arv: <input id="e">
+<button id="absButton">Abs</button>
+<hr>
+Vastus: <input id="answer3" disabled/>
+</body>
+<script>
+  let absButton = document.getElementById('absButton');
+  absButton.onclick = function (){
+    let arv = document.getElementById("e");
+    let answer = document.getElementById("answer3");
+    if(Number(arv.value) < Number(0)) {
+      answer.value = (arv.value * Number(-1));
+    } else {
+      answer.value = arv.value;
+    }
+  }
+</script>
+<hr>
+<hr>
+<body>
+<h3>Kas on paarisarv?</h3>
+arv: <input id="f">
+<button id="isEvenButton">Paaris?</button>
+<hr>
+Vastus: <input id="answer4" disabled/>
+</body>
+<script>
+  let IsEvenButton = document.getElementById('isEvenButton');
+  isEvenButton.onclick = function (){
+    let arv = document.getElementById("f");
+    let answer = document.getElementById("answer4");
+    if(Number(arv.value) % Number(2) === Number(0) {
+      answer.value = true;
+    } else {
+      answer.value = false;
+    }
+  }
+</script>
+
+</html>
